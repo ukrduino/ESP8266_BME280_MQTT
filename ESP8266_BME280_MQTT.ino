@@ -21,6 +21,7 @@ char msg[50];
 
 void setup() {
 	Serial.begin(115200);
+	WiFi.mode(WIFI_STA);
 	client.setServer(mqtt_server, 1883);
 	client.setCallback(callback);
 	setup_wifi();
@@ -73,9 +74,7 @@ void connectToBroker() {
 	else {
 		Serial.print("failed, rc=");
 		Serial.print(client.state());
-		Serial.println(" try again in 5 seconds");
-		// Wait 5 seconds before retrying
-		delay(5000);
+		Serial.println(" try again in 60 seconds");
 	}
 }
 
